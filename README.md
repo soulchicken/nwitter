@@ -1,10 +1,11 @@
 # nwitter
 트위터 클론코딩 해보기 근데 파이어베이스와 리액트를 곁들인
 
-## 사용한 node
-- firebase
+## 사용한 스택
+- react 18.1.0
+- react-dom-router 6.3.0
+- firebase 9.8.1
 - env
-- react
 
 ## 트러블 슈팅
 
@@ -32,14 +33,16 @@ import firebase from 'firebase/compat/app';
 - 기존 5버전 : `import { Switch } from "react-router-dom";`
 - 현재 6버전 : `import { Routes } from "react-router-dom";`
 
-### 트러블슈팅 3) exact.
-- `Uncaught Error: [Home] is not a <Route> component. All component children of <Routes> must be a <Route> or <React.Fragment>`
+### 트러블슈팅 3) exact
+- exact는 이제 안쓰는 문법으로 route에 *를 활용한다.
+- 에러 메시지 :`Uncaught Error: [Home] is not a <Route> component. All component children of <Routes> must be a <Route> or <React.Fragment>`
+- 기존 react-router-dom 5버전
 ```js
 <Routes>
     {isLoggedIn ? (<Switch exact path="/"><Home /></Switch>) : (<Switch exact path="/"><Auth /></Switch>)}
 </Routes>
 ```
-- d
+- 현재 react-router-dom 6버전
 ```js
 <Routes>
     {isLoggedIn ? (<Route path="/*" element={<Home />} />) : (<Route path="/*" element={<Auth />} />)}
