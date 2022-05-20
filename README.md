@@ -48,3 +48,25 @@ import firebase from 'firebase/compat/app';
     {isLoggedIn ? (<Route path="/*" element={<Home />} />) : (<Route path="/*" element={<Auth />} />)}
 </Routes>
 ```
+
+### 트러블슈팅 4) firebase auth 부분 import 에러
+- 파이어베이스 9버전이후부터 바뀐 케이스
+```
+Uncaught TypeError: firebase_compat_app__WEBPACK_IMPORTED_MODULE_0__.default.auth is not a function
+```
+- 기존 코드
+```js
+import "firebase/auth"
+
+...
+
+export const authService = firebase.auth();
+```
+- 현재 코드
+```js
+import {getAuth} from "firebase/auth";
+
+...
+
+export const authService = getAuth();
+```
